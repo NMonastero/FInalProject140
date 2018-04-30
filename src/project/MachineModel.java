@@ -274,6 +274,26 @@ public class MachineModel {
 	public void setData(int index, int value) {
 		memory.setData(index, value);
 	}
+	
+	int[] getCode() {
+		return memory.getCode();
+	}
+	
+	public int getOp(int i) {
+		return memory.getOp(i);
+	}
+	
+	public int getArg(int i) {
+		return memory.getArg(i);
+	}
+	
+	public void clear(int start, int end) {
+		memory.clear(start, end);
+	}
+	
+	public void setCode(int index, int op, int arg) {
+		memory.setCode(index, op, arg);
+	}
 	//Delegate Methods
 	
 	//Getters and Setters for CPU
@@ -301,6 +321,8 @@ public class MachineModel {
 		cpu.memoryBase = memoryBase;
 	}
 	//Getters and Setters for CPU
+	
+	
 
 	public class CPU{
 		//the getters and setters for these are above in machineModel
