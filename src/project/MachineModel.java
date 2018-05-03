@@ -1,6 +1,7 @@
 package project;
 
 import java.util.TreeMap;
+import projectview.States;
 
 public class MachineModel {
 	public TreeMap<Integer, Instruction> INSTRUCTIONS = new TreeMap<>();
@@ -8,11 +9,45 @@ public class MachineModel {
 	private Memory memory = new Memory();
 	private HaltCallback callback;
 	private boolean withGUI;
-
+	private Job[] jobs = new Job[2];
+	private Job currentJob;
+	
 	public MachineModel() {
 		this(false, null);
 	}
-
+	public Job getJob() {
+		return currentJob;
+	}
+	public void setJob(int i) {
+		if(i!=0||i!=0) {
+			throw new IllegalArgumentException("Value must be 0 or 1");
+		}
+		currentJob.setCurrentAcc(cpu.accumulator);
+		currentJob.setCurrentIP(cpu.instructionPointer);
+		currentJob = jobs[i];
+		cpu.accumulator = currentJob.getCurrentIP();
+		cpu.instructionPointer = currentJob.getCurrentAcc();
+		cpu.memoryBase = currentJob.getStartmemoryIndex();
+	}
+	public void clearJob() {
+		memory.clearData(currentJob.getStartmemoryIndex(), currentJob.getStartmemoryIndex()+Memory.DATA_SIZE/2);
+		memory.clear(currentJob.getStartcodeIndex(),currentJob.getStartcodeIndex()+currentJob.getCodeSize());
+		cpu.accumulator = 0;
+		cpu.instructionPointer = currentJob.getStartcodeIndex();
+		currentJob.reset();
+	}
+	public void step() {
+		try {
+			if(cpu.instructionPointer<currentJob.getStartcodeIndex()||cpu.instructionPointer>=currentJob.getStartcodeIndex()+currentJob.getCodeSize()) {
+				throw new CodeAccessException();
+			}
+			get(getOp(cpu.instructionPointer)).execute(getArg(cpu.instructionPointer));
+		}
+		catch(Exception e) {
+			callback.halt();
+			throw e;
+		}
+	}
 	public MachineModel(boolean b, HaltCallback h) {
 		withGUI = b;
 		callback = h;
@@ -255,6 +290,15 @@ public class MachineModel {
 		INSTRUCTIONS.put(0x1F, arg -> {
 			callback.halt();
 		});
+		jobs[0] = new Job();
+		jobs[1] = new Job();
+		currentJob = jobs[0];
+		jobs[0].setStartcodeIndex(0);
+		jobs[0].setStartmemoryIndex(0);
+		jobs[0].setCurrentState(States.NOTHING_LOADED);
+		jobs[1].setStartcodeIndex(Memory.CODE_MAX/4);
+		jobs[1].setStartmemoryIndex(Memory.DATA_SIZE/2);
+		jobs[1].setCurrentState(States.NOTHING_LOADED);
 	}
 	
 	//Gets the correct instruction from the above constructor based on the index
