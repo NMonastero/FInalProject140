@@ -1,6 +1,19 @@
 package project;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.TreeMap;
+
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
 import projectview.States;
 
 public class MachineModel {
@@ -336,7 +349,15 @@ public class MachineModel {
 	public void setCode(int index, int op, int arg) {
 		memory.setCode(index, op, arg);
 	}
-	//Delegate Methods
+	
+	String getHex(int i) {
+		return memory.getHex(i);
+	}
+	
+	String getDecimal(int i) {
+		return memory.getDecimal(i);
+	}
+	//Memory Delegate Methods
 	
 	//Getters and Setters for CPU
 	public int getAccumulator() {
@@ -363,8 +384,6 @@ public class MachineModel {
 		cpu.memoryBase = memoryBase;
 	}
 	//Getters and Setters for CPU
-	
-	
 
 	public class CPU{
 		//the getters and setters for these are above in machineModel

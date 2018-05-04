@@ -28,14 +28,14 @@ public class MemoryViewPanel implements Observer{
 	private int lower = -1;
 	private int upper = -1;
 	private int previousColor = -1;
-	
+
 	public MemoryViewPanel(ViewMediator gui, MachineModel mdl, int lwr, int upr) {
 		model = mdl;
 		lower = lwr;
 		upper = upr;
 		gui.addObserver(this);
 	}
-	
+
 	public JComponent createMemoryDisplay() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
@@ -44,26 +44,26 @@ public class MemoryViewPanel implements Observer{
 				"Data Memory View [" + lower + "-" + upper + "]",
 				TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION);
 		panel.setBorder(border);
-		
+
 		JPanel innerPanel = new JPanel();
 		innerPanel.setLayout(new BorderLayout());
 
 		JPanel numPanel = new JPanel();
 		numPanel.setLayout(new GridLayout(0,1));
-		
+
 		JPanel decimalPanel = new JPanel();
 		decimalPanel.setLayout(new GridLayout(0,1));
-		
+
 		JPanel hexPanel = new JPanel();
 		hexPanel.setLayout(new GridLayout(0,1));
-		
+
 		innerPanel.add(numPanel, BorderLayout.LINE_START);
 		innerPanel.add(decimalPanel, BorderLayout.CENTER);
 		innerPanel.add(hexPanel, BorderLayout.LINE_END);
-		
+
 		dataHex = new JTextField[upper-lower];
 		dataDecimal = new JTextField[upper-lower];
-		
+
 		for(int i = lower; i < upper; i++) {
 			numPanel.add(new JLabel(i+": ", JLabel.RIGHT));
 			dataDecimal[i - lower] = new JTextField(10);
@@ -71,12 +71,12 @@ public class MemoryViewPanel implements Observer{
 			decimalPanel.add(dataDecimal[i-lower]);
 			hexPanel.add(dataHex[i-lower]);
 		}
-		
+
 		scroller = new JScrollPane(innerPanel);
 		panel.add(scroller);
 		return panel;
 	}
-	
+
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		for(int i = lower; i < upper; i++) {
@@ -125,4 +125,5 @@ public class MemoryViewPanel implements Observer{
 		System.out.println(Loader.load(model, new File("large.pexe"), 0, 0));
 		panel.update(view, null);
 	}
+
 }
