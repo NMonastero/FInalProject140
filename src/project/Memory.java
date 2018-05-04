@@ -48,4 +48,13 @@ public class Memory {
 		code[2*index] = op;
 		code[2*index+1] = arg;
 	}
+	
+	public String getHex(int i) {
+		return Integer.toHexString(code[2*i]).toUpperCase() + " " + Integer.toHexString(code[2*i+1]).toUpperCase();
+		
+	}
+	
+	public String getDecimal(int i) {
+		return InstrMap.toMnemonic.get(code[2*1]) + " " + code[2*i+1];
+	}
 }
