@@ -12,7 +12,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import project.Assembler;
 import project.Job;
+import project.Loader;
 import project.MachineModel;
+import project.Memory;
 public class FilesManager {
 	private ViewMediator view;
 	private MachineModel model; // imported from project
