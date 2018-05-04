@@ -28,7 +28,7 @@ public class MachineModel {
 	public MachineModel() {
 		this(false, null);
 	}
-	public Job getJob() {
+	public Job getCurrentJob() {
 		return currentJob;
 	}
 	public void setJob(int i) {
@@ -42,6 +42,15 @@ public class MachineModel {
 		cpu.instructionPointer = currentJob.getCurrentAcc();
 		cpu.memoryBase = currentJob.getStartmemoryIndex();
 	}
+	
+	public States getCurrentState() {
+		return currentJob.getCurrentState();
+	}
+	
+	public void setCurrentState(States currentState) {
+		currentJob.setCurrentState(currentState);
+	}
+	
 	public void clearJob() {
 		memory.clearData(currentJob.getStartmemoryIndex(), currentJob.getStartmemoryIndex()+Memory.DATA_SIZE/2);
 		memory.clear(currentJob.getStartcodeIndex(),currentJob.getStartcodeIndex()+currentJob.getCodeSize());
@@ -318,6 +327,10 @@ public class MachineModel {
 	}
 	
 	//Delegate Methods
+	public int getChangedIndex() {
+		return memory.getChangedIndex();
+	}
+	
 	int[] getData() {
 		return memory.getData();
 	}
@@ -350,11 +363,11 @@ public class MachineModel {
 		memory.setCode(index, op, arg);
 	}
 	
-	String getHex(int i) {
+	public String getHex(int i) {
 		return memory.getHex(i);
 	}
 	
-	String getDecimal(int i) {
+	public String getDecimal(int i) {
 		return memory.getDecimal(i);
 	}
 	//Memory Delegate Methods

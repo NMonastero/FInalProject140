@@ -60,7 +60,7 @@ public class CodeViewPanel implements Observer{
 		innerPanel.add(decimalPanel, BorderLayout.CENTER);
 		innerPanel.add(hexPanel, BorderLayout.LINE_END);
 
-		for(int i = 0; i < Memory.CODE_MAX/2; i++) {
+		for(int i = 0; i < Memory.CODE_MAX/2; i++) { //this might be wrong
 			numPanel.add(new JLabel(i+": ", JLabel.RIGHT));
 			codeDecimal[i] = new JTextField(10);
 			codeHex[i] = new JTextField(10);
