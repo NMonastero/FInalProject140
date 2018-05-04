@@ -110,7 +110,7 @@ public class MemoryViewPanel implements Observer{
 				bar.setValue(Math.max(0, bounds.y - 15*bounds.height));
 			}
 		}
-	}//
+	}
 
 	public static void main(String[] args) {
 		ViewMediator view = new ViewMediator(); 
