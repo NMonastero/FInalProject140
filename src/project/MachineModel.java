@@ -103,8 +103,7 @@ public class MachineModel {
 
 		//INSTRUCTOIN_MAP entry for "JUMPI"
 		INSTRUCTIONS.put(0x8,  arg -> {
-			cpu.incrementIP(cpu.instructionPointer*-1);
-			cpu.incrementIP(arg);
+			cpu.instructionPointer = currentJob.getStartcodeIndex() + arg;
 		});
 
 		//INSTRUCTOIN_MAP entry for "JMPZR"
@@ -130,8 +129,7 @@ public class MachineModel {
 		//INSTRUCTOIN_MAP entry for "JUMPZI"
 		INSTRUCTIONS.put(0xB,  arg -> {
 			if(cpu.accumulator == 0) {
-				cpu.incrementIP(cpu.instructionPointer*-1);
-				cpu.incrementIP(arg);
+				cpu.instructionPointer = currentJob.getStartcodeIndex() + arg;
 			}
 			else {
 				cpu.incrementIP(1);
