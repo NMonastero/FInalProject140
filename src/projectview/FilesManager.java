@@ -208,10 +208,4 @@ public class FilesManager {
 							JOptionPane.OK_OPTION);
 		}
 	}
-	void clearJob() {
-		
-	}
-	void makeReady(String s) {
-		
-	}
 }

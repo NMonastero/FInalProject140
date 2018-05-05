@@ -49,6 +49,8 @@ public class InstrMap {
 		 toCode.put("CMPZ", 0x1C);
 		 toCode.put("HALT", 0x1F);
 		 
+		 toCode.put("JUMPN", 29); // 29 = 0x1D
+		 
 		 for(String s : toCode.keySet()) {
 			 toMnemonic.put(toCode.get(s), s);
 		 }

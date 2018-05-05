@@ -27,6 +27,11 @@ public class MachineModel {
 	
 	public MachineModel() {
 		this(false, null);
+		//INSTRUCTION_MAP entry for "JUMPN"
+		INSTRUCTIONS.put(29, arg -> {
+			int arg1 = memory.getData(cpu.memoryBase+arg);
+			cpu.instructionPointer = currentJob.getStartcodeIndex() + arg1;
+		});
 	}
 	public Job getCurrentJob() {
 		return currentJob;
