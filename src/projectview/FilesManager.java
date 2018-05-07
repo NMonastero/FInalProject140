@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import project.Assembler;
+import project.FullAssembler;
 import project.Job;
 import project.Loader;
 import project.MachineModel;
@@ -22,14 +23,17 @@ public class FilesManager {
 	private String executableDir; // stored directory for pexe assembled files
 	private Properties properties = null; // Java method for persistent program properties
 	private File currentlyExecutingFile = null;
+	
 	public FilesManager(ViewMediator v) {
 		view = v;
 		model = view.getModel();
 	}
+	
 	public void initialize() {
-		locateDefaultDirectory();
-		loadPropertiesFile();
+		this.locateDefaultDirectory();
+		this.loadPropertiesFile();
 	}
+	
 	private void locateDefaultDirectory() {
 		//CODE TO DISCOVER THE ECLIPSE DEFAULT DIRECTORY:
 		File temp = new File("propertyfile.txt");
@@ -51,6 +55,7 @@ public class FilesManager {
 		int lastSlash = defaultDir.lastIndexOf('/');
 		defaultDir  = defaultDir.substring(0, lastSlash + 1);
 	}
+	
 	void loadPropertiesFile() {
 		try { // load properties file "propertyfile.txt", if it exists
 			properties = new Properties();
@@ -188,7 +193,7 @@ public class FilesManager {
 		}
 		finalLoad_ReloadStep(job);
 	}
-	public void finalLoad_ReloadStep(Job job) {
+	void finalLoad_ReloadStep(Job job) {
 		view.clearJob();
 		String str = Loader.load(model, currentlyExecutingFile, 
 				job.getStartcodeIndex(), job.getStartmemoryIndex());

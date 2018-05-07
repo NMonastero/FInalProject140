@@ -360,8 +360,8 @@ public class MachineModel {
 		return memory.getArg(i);
 	}
 	
-	public void clear(int start, int end) {
-		memory.clear(start, end);
+	public void clearCode(int start, int end) {
+		memory.clearCode(start, end);
 	}
 	
 	public void setCode(int index, int op, int arg) {

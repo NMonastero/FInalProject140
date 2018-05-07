@@ -39,6 +39,14 @@ public class ViewMediator extends Observable{
 		return frame;
 	}
 	
+	public void clearJob() {
+		model.clearJob();
+		model.setCurrentState(States.NOTHING_LOADED);
+		model.getCurrentState().enter();
+		setChanged();
+		notifyObservers("Clear");
+	}
+	
 	private void createAndShowGUI() {
 		animator = new Animator(this);
 		filesManager = new FilesManager(this);
@@ -121,14 +129,6 @@ public class ViewMediator extends Observable{
 		if (decision == JOptionPane.YES_OPTION) {
 			System.exit(0);
 		}
-	}
-	
-	public void clearJob() {
-		model.clearJob();
-		model.setCurrentState(States.NOTHING_LOADED);
-		model.getCurrentState().enter();
-		setChanged();
-		notifyObservers("Clear");
 	}
 	
 	public void toggleAutoStep() {
