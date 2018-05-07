@@ -58,7 +58,7 @@ public class MachineModel {
 	
 	public void clearJob() {
 		memory.clearData(currentJob.getStartmemoryIndex(), currentJob.getStartmemoryIndex()+Memory.DATA_SIZE/2);
-		memory.clear(currentJob.getStartcodeIndex(),currentJob.getStartcodeIndex()+currentJob.getCodeSize());
+		memory.clearCode(currentJob.getStartcodeIndex(),currentJob.getStartcodeIndex()+currentJob.getCodeSize());
 		cpu.accumulator = 0;
 		cpu.instructionPointer = currentJob.getStartcodeIndex();
 		currentJob.reset();

@@ -14,7 +14,6 @@ import project.Assembler;
 import project.Job;
 import project.Loader;
 import project.MachineModel;
-import project.Memory;
 public class FilesManager {
 	private ViewMediator view;
 	private MachineModel model; // imported from project
@@ -189,7 +188,7 @@ public class FilesManager {
 		}
 		finalLoad_ReloadStep(job);
 	}
-	void finalLoad_ReloadStep(Job job) {
+	public void finalLoad_ReloadStep(Job job) {
 		view.clearJob();
 		String str = Loader.load(model, currentlyExecutingFile, 
 				job.getStartcodeIndex(), job.getStartmemoryIndex());

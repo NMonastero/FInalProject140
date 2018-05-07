@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class ViewMediator extends Observable{
-	public void step() { }
 	private MachineModel model;
 	private CodeViewPanel codeViewPanel;
 	private MemoryViewPanel memoryViewPanel1;
@@ -181,7 +180,7 @@ public class ViewMediator extends Observable{
 		notifyObservers(string);
 	}
 	
-	public void setp() {
+	public void step() {
 		if(model.getCurrentState() != States.PROGRAM_HALTED && model.getCurrentState() != States.NOTHING_LOADED) {
 			try {
 				model.step();
