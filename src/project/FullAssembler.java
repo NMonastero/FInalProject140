@@ -64,46 +64,63 @@ public class FullAssembler implements Assembler{
 				if(s2.next().charAt(0) == ' ' || s2.next().charAt(0) == '\t') {
 					throw new InputMismatchException("There can be no blank space at the begining of lines (Error on line: " + lineNumber+1 + ")");
 				}
-				
+
 				String[] parts = s2.next().trim().split("\\s+");
 				if(!InstrMap.toCode.keySet().contains(parts[0])) {
 					throw new InputMismatchException("Key does not contain input at line: " + lineNumber+1);
 				}
-				
+
 				if(parts.length == 1) {
-					
+
 				}
 				else if(parts.length == 2) {
-					try{
-						//... all the code to compute the correct flags
-							int arg = Integer.parseInt(parts[1],16);
-						//.. the rest of setting up the opPart
-						} catch(NumberFormatException e) {
-							error.append("\nError on line " + (i+1) + 
-									": argument is not a hex number");
-							retVal = i + 1;				
-						} // At this point, all the code input has been put in a List and i is the current index
-						// so the line number is 1 larger than the index (index 0 corresponds to line 1)
+
+					int arg = Integer.parseInt(parts[1],16);
+					throw new NumberFormatException("\nError on line " + (lineNumber+1) + 
+							": argument is not a hex number");
 				}
 				else {
-					throw new InputMismatchException("Mnemonic on line " + lineNumber + " has an incorrect number of arguments");
+					throw new InputMismatchException("Mnemonic on line " + lineNumber+1 + " has an incorrect number of arguments");
 				}
-				
+
 				codeList.add(s2.next());
 				lineNumber++;
-				
+
 				if(s2.next().trim().toUpperCase().equals("DATA")) {
 					d = true;
 				}
 			}
-			
+
 			while(s2.hasNext() && d == true) {
-				//put error tests here
+				if(s2.next().charAt(0) == ' ' || s2.next().charAt(0) == '\t') {
+					throw new InputMismatchException("There can be no blank space at the begining of lines (Error on line: " + lineNumber+1 + ")");
+				}
+
+				String[] parts = s2.next().trim().split("\\s+");
+				if(!InstrMap.toCode.keySet().contains(parts[0])) {
+					throw new InputMismatchException("Key does not contain input on line: " + lineNumber+1);
+				}
 				
-				//key testing error (4) needs to be testing in all caps
-				
+				if(!s2.next().trim().toUpperCase().equals(s2.next().trim())) {
+					throw new InputMismatchException("Data is not in all caps on line: "+ lineNumber+1);
+				}
+
+				//This part (that deals with parts) is what 7) is talking about
+				if(parts.length == 1) {
+
+				}
+				else if(parts.length == 2) {
+
+					int arg = Integer.parseInt(parts[1],16);
+					throw new NumberFormatException("\nError on line " + (lineNumber+1) + 
+							": argument is not a hex number");
+				}
+				else {
+					throw new InputMismatchException("Mnemonic on line " + lineNumber + " has an incorrect number of arguments");
+				}
+
 				//parts must have a length of 2 (7)
-				
+
 				dataList.add(s2.next());
 				lineNumber++;
 			}
