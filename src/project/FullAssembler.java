@@ -59,8 +59,12 @@ public class FullAssembler implements Assembler{
 					lineNumber++;
 				}
 			}
-		} catch(Exception e) {
-
+		}  catch (FileNotFoundException e) {
+			error.append("\nError: Unable to write the assembled program to the output file");
+			return -1;
+		} catch (IOException e) {
+			error.append("\nUnexplained IO Exception");
+			return -1;
 		}
 
 
