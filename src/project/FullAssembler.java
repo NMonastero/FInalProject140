@@ -150,7 +150,7 @@ public class FullAssembler implements Assembler{
 			return -1;
 		}
 		
-		
+		return 0;
 
 	}
 }
