@@ -55,30 +55,32 @@ public class ViewMediator extends Observable{
 		memoryViewPanel1 = new MemoryViewPanel(this, model, 0, 240);
 		memoryViewPanel2 = new MemoryViewPanel(this, model, 240, Memory.DATA_SIZE/2);
 		memoryViewPanel3 = new MemoryViewPanel(this, model, Memory.DATA_SIZE/2, Memory.DATA_SIZE);
-		JMenuBar bar = new JMenuBar();
+		controlPanel = new ControlPanel(this);
+		processorPanel = new ProcessorViewPanel(this, model);
+		menuBuilder = new MenuBarBuilder(this);
+		frame = new JFrame("Simulator");
+
+		Container content = frame.getContentPane();
+		content.setLayout(new BorderLayout(1,1));
+		content.setBackground(Color.BLACK);
+		
+		frame.add(controlPanel.createControlDisplay(),BorderLayout.PAGE_END);
 		frame.add(processorPanel.createProcessorDisplay(),BorderLayout.PAGE_START);
+		
+		JMenuBar bar = new JMenuBar();
 		frame.setJMenuBar(bar);
 		bar.add(menuBuilder.createFileMenu());
 		bar.add(menuBuilder.createExecuteMenu());
 		bar.add(menuBuilder.createJobsMenu());
-		controlPanel = new ControlPanel(this);
-		frame.add(controlPanel.createControlDisplay(),BorderLayout.PAGE_END);
-		processorPanel = new ProcessorViewPanel(this, model);
-		menuBuilder = new MenuBarBuilder(this);
-		frame = new JFrame("Simulator");
-		
-		Container content = frame.getContentPane();
-		content.setLayout(new BorderLayout(1,1));
-		content.setBackground(Color.BLACK);
 		
 		frame.setSize(1200, 600);
 		
 		JPanel center = new JPanel(new GridLayout(1, 3));
 		
 		frame.add(codeViewPanel.createCodeDisplay(), BorderLayout.LINE_START);
-		content.add(memoryViewPanel1.createMemoryDisplay());
-		content.add(memoryViewPanel2.createMemoryDisplay());
-		content.add(memoryViewPanel3.createMemoryDisplay());
+		center.add(memoryViewPanel1.createMemoryDisplay());
+		center.add(memoryViewPanel2.createMemoryDisplay());
+		center.add(memoryViewPanel3.createMemoryDisplay());
 		frame.add(center, BorderLayout.CENTER); 
 		//we have to return HERE for the other GUI components
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

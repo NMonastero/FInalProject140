@@ -1,0 +1,4 @@
+#File locations
+#Wed May 09 13:27:21 EDT 2018
+ExecutableDirectory=C\:/Users/Nick/Documents/GitHub/FInalProject140/compiledCode/
+SourceDirectory=C\:/Users/Nick/Documents/GitHub/FInalProject140/pasm/

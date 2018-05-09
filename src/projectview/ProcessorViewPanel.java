@@ -11,9 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import project.MachineModel; // and other swing components
+
 public class ProcessorViewPanel implements Observer {
 	private MachineModel model;
 	private JTextField acc = new JTextField(); 
+	private JTextField ip = new JTextField(); 
+	private JTextField mb = new JTextField(); 
 
 	public ProcessorViewPanel(ViewMediator gui, MachineModel model) {
 		this.model = model;
@@ -24,9 +27,11 @@ public class ProcessorViewPanel implements Observer {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,0));
 		panel.add(new JLabel("Accumulator: ", JLabel.RIGHT));
-		panel.add(new JLabel("Instruction Pointer: ", JLabel.RIGHT));
-		panel.add(new JLabel("Memory Base: ", JLabel.RIGHT));
 		panel.add(acc);
+		panel.add(new JLabel("Instruction Pointer: ", JLabel.CENTER));
+		panel.add(ip);
+		panel.add(new JLabel("Memory Base: ", JLabel.LEFT));
+		panel.add(mb);
 		return panel;
 	}
 
@@ -34,8 +39,8 @@ public class ProcessorViewPanel implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		if(model != null) {
 			acc.setText("" + model.getAccumulator());
-			acc.setText("" + model.getInstructionPointer());
-			acc.setText("" + model.getMemoryBase());
+			ip.setText("" + model.getInstructionPointer());
+			mb.setText("" + model.getMemoryBase());
 		}
 	}
 	

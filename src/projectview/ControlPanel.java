@@ -22,14 +22,19 @@ public class ControlPanel implements Observer{
 	public JComponent createControlDisplay() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1,0));
+		
 		panel.add(stepButton);
 		stepButton.addActionListener(e -> view.step());
+		
 		panel.add(clearButton);
 		clearButton.addActionListener(e -> view.clearJob());
+		
 		panel.add(runButton);
 		runButton.addActionListener(e -> view.toggleAutoStep());
+		
 		panel.add(reloadButton);
-		runButton.addActionListener(e -> view.reload());
+		reloadButton.addActionListener(e -> view.reload());
+		
 		JSlider slider = new JSlider(5,1000);
 		slider.addChangeListener(e -> view.setPeriod(slider.getValue()));
 		panel.add(slider);

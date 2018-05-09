@@ -43,6 +43,7 @@ public class MemoryViewPanel implements Observer{
 				BorderFactory.createLineBorder(Color.BLACK),
 				"Data Memory View [" + lower + "-" + upper + "]",
 				TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION);
+		
 		panel.setBorder(border);
 
 		JPanel innerPanel = new JPanel();

@@ -54,8 +54,7 @@ public class SimpleAssembler implements Assembler{
 			output.println(-1); // signal for the "DATA" separating code and data
 			output.println(0); // filler for the 2-line pattern
 			for(String s : outputData) output.println(s);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		} catch (FileNotFoundException e) { //Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
