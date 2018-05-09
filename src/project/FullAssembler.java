@@ -16,7 +16,6 @@ public class FullAssembler implements Assembler{
 		}
 			
 		try(Scanner s1 = new Scanner(new File(inputFileName))){
-			int dataCount = 0;
 			ArrayList<String> dataList = new ArrayList<String>();
 			ArrayList<String> codeList = new ArrayList<String>();
 			while(s1.hasNext()) {
@@ -69,7 +68,6 @@ public class FullAssembler implements Assembler{
 
 
 		try(Scanner s2 = new Scanner(new File(inputFileName))){
-			int dataCount = 0;
 			ArrayList<String> dataList = new ArrayList<String>();
 			ArrayList<String> codeList = new ArrayList<String>();
 			boolean d = false;
