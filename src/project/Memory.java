@@ -55,6 +55,6 @@ public class Memory {
 	}
 	
 	public String getDecimal(int i) {
-		return InstrMap.toMnemonic.get(code[2*1]) + " " + code[2*i+1];
+		return InstrMap.toMnemonic.get(code[2*i]) + " " + code[2*i+1];
 	}
 }

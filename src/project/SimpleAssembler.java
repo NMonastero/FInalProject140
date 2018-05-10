@@ -18,7 +18,7 @@ public class SimpleAssembler implements Assembler{
 		if(parts.length == 1) {
 			return InstrMap.toCode.get(parts[0]) + "\n" + 0;
 		}
-		return InstrMap.toCode.get(parts[0]) + "\n" + Integer.parseInt(parts[1], 16);
+		return InstrMap.toCode.get(parts[0]) + "\n" + Integer.parseInt(parts[1],16);
 	}
 
 	private String makeOutputData(String[] parts) {
@@ -35,8 +35,8 @@ public class SimpleAssembler implements Assembler{
 					.peek(line -> {if(line.toUpperCase().equals("DATA")) readingCode = false;})
 					.map(line -> line.trim())
 					.collect(Collectors.partitioningBy(line -> readingCode));
-			System.out.println("true List " + lists.get(true)); // these lines can be uncommented 
-			System.out.println("false List " + lists.get(false)); // for checking the code
+			System.out.println("true List " + lists.get(true)); 
+			System.out.println("false List " + lists.get(false)); 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

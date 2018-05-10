@@ -4,16 +4,17 @@ import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
 public class ControlPanel implements Observer{
-	private JMenuItem stepButton = new JMenuItem("Step");
-	private JMenuItem clearButton = new JMenuItem("Clear");
-	private JMenuItem runButton = new JMenuItem("Run");
-	private JMenuItem reloadButton = new JMenuItem("Reload");
+	private JButton stepButton = new JButton("Step");
+	private JButton clearButton = new JButton("Clear");
+	private JButton runButton = new JButton("Run");
+	private JButton reloadButton = new JButton("Reload");
 	private ViewMediator view;
 	
 	public ControlPanel(ViewMediator gui) { 

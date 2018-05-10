@@ -19,15 +19,16 @@ public class Loader {
 				String line1 = input.nextLine();
 				String line2 = input.nextLine();
 				Scanner parser = new Scanner(line1 + " " + line2);
-				if(parser.nextInt() == -1 && incode == true) {
+				int p = parser.nextInt();
+				if(p == -1 && incode == true) {
 					incode = false;
 				}
 				else if(incode == true){
-					model.setCode(codeOffset+codeSize, parser.nextInt()-1, parser.nextInt());
+					model.setCode(codeOffset+codeSize, p, parser.nextInt());
 					codeSize++;
 				}
 				else {
-					model.setData(parser.nextInt() + memoryOffset, parser.nextInt()); //The address might not be correct here
+					model.setData(p + memoryOffset, parser.nextInt()); //The address might not be correct here
 					parser.close();
 				}
 			}

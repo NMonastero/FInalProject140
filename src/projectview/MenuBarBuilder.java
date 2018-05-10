@@ -32,13 +32,13 @@ public class MenuBarBuilder implements Observer{
 		load.setMnemonic(KeyEvent.VK_L);
 		load.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_L, ActionEvent.CTRL_MASK));
-		load.addActionListener(e -> view.assembleFile());
+		load.addActionListener(e -> view.loadFile());
 		menu.add(load);
 		menu.addSeparator();
 		exit.setMnemonic(KeyEvent.VK_E);
 		exit.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-		exit.addActionListener(e -> view.assembleFile());
+		exit.addActionListener(e -> view.exit());
 		menu.add(exit);
 		return menu;
 	}
@@ -48,12 +48,12 @@ public class MenuBarBuilder implements Observer{
 		go.setMnemonic(KeyEvent.VK_G);
 		go.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_G, ActionEvent.CTRL_MASK));
-		go.addActionListener(e -> view.assembleFile());
+		go.addActionListener(e -> view.execute());
 		menu.add(go);
 		return menu;
 	}
 	public JMenu createJobsMenu() {
-		JMenu menu =  new JMenu("Execute");
+		JMenu menu =  new JMenu("Change_Job");
 		menu.setMnemonic(KeyEvent.VK_F);
 		job0.setMnemonic(KeyEvent.VK_0);
 		job0.setAccelerator(KeyStroke.getKeyStroke(

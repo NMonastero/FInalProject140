@@ -7,7 +7,6 @@ import java.util.TreeSet;
 public interface Assembler {
 	Set<String> noArgument = new TreeSet(Arrays.asList("HALT", "NOP", "NOP"));
 	
-	
 	/**
 	 * Method to assemble a file to its executable representation. 
 	 * If the input has errors one or more of the errors will be reported 

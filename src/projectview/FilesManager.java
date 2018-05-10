@@ -15,6 +15,7 @@ import project.FullAssembler;
 import project.Job;
 import project.Loader;
 import project.MachineModel;
+import project.SimpleAssembler;
 public class FilesManager {
 	private ViewMediator view;
 	private MachineModel model; // imported from project
@@ -134,7 +135,7 @@ public class FilesManager {
 				StringBuilder errors = new StringBuilder();
 				String sourceName = source.getAbsolutePath();
 				String outputName = outputExe.getAbsolutePath();
-				Assembler assem = new FullAssembler();
+				Assembler assem = new FullAssembler(); //TODO make this fullAssembler later
 				int ret = assem.assemble(sourceName, outputName, errors); 
 				if (ret == 0){
 					JOptionPane.showMessageDialog(

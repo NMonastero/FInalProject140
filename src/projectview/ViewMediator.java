@@ -284,6 +284,7 @@ public class ViewMediator extends Observable{
 					"Divide by zero error",
 					JOptionPane.OK_OPTION);
 			}
+			System.out.print("execute");
 		}
 		setChanged();
 		notifyObservers();
