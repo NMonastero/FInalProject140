@@ -74,16 +74,16 @@ public class FullAssembler implements Assembler{
 					d = true;
 					s2.next();
 				}
-				if(!d) {
+				if(d) {
 					if(line.charAt(0) == ' ' || line.charAt(0) == '\t') {
 						error.append("\nLine starts with illegal white space");
 						throw new InputMismatchException("There can be no blank space at the begining of lines (Error on line: " + lineNumber+1 + ")");
 					}
-
-					if(!InstrMap.toCode.keySet().contains(parts[0])) {
-						error.append("\nKey does not contain correct input");
-						throw new InputMismatchException("Key does not contain input at line: " + lineNumber+1);
+					if(parts[0].toUpperCase()!=parts[0]) {
+						error.append("\nError on line " + (lineNumber+1) + ": mnemonic must be upper case");
+						throw new InputMismatchException("mnemonic must be upper case");
 					}
+					
 
 					if(parts.length != 2) {
 						if(parts.length != 1 && noArgument.contains(parts[0])) {
@@ -144,8 +144,7 @@ public class FullAssembler implements Assembler{
 			error.append("\nUnexplained IO Exception");
 			return -1;
 		}
-
+		
 		return 0;
-
 	}
 }
