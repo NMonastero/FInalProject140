@@ -1,4 +1,4 @@
 #File locations
-#Thu May 10 19:57:53 EDT 2018
-ExecutableDirectory=C\:/Users/Liam/git/FInalProject140/
-SourceDirectory=C\:/Users/Liam/git/FInalProject140/
+#Sat May 12 16:09:06 EDT 2018
+ExecutableDirectory=C\:/Users/Nick/Documents/GitHub/FInalProject140/
+SourceDirectory=C\:/Users/Nick/Documents/GitHub/FInalProject140/

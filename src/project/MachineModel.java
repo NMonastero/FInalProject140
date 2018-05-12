@@ -28,16 +28,13 @@ public class MachineModel {
 	public MachineModel() {
 		this(false, null);
 		//INSTRUCTION_MAP entry for "JUMPN"
-		INSTRUCTIONS.put(29, arg -> {
-			int arg1 = memory.getData(cpu.memoryBase+arg);
-			cpu.instructionPointer = currentJob.getStartcodeIndex() + arg1;
-		});
+
 	}
 	public Job getCurrentJob() {
 		return currentJob;
 	}
 	public void setJob(int i) {
-		if(i!=0||i!=0) {
+		if(i!=0 && i!=1) {
 			throw new IllegalArgumentException("Value must be 0 or 1");
 		}
 		currentJob.setCurrentAcc(cpu.accumulator);
@@ -309,6 +306,11 @@ public class MachineModel {
 				cpu.accumulator = 0;
 			}
 			cpu.incrementIP(1);
+		});
+		
+		INSTRUCTIONS.put(29, arg -> {
+			int arg1 = memory.getData(cpu.memoryBase+arg);
+			cpu.instructionPointer = currentJob.getStartcodeIndex() + arg1;
 		});
 
 		//INSTRUCTION_MAP entry for "HALT"

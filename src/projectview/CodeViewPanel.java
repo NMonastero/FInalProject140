@@ -80,7 +80,7 @@ public class CodeViewPanel implements Observer{
 			System.out.println("CODE SIZE " +  model.getCurrentJob().getCodeSize());
 			for(int i = offset; 
 					i < offset + model.getCurrentJob().getCodeSize(); i++) {
-				System.out.println("CODE SIZE " +  model.getCurrentJob().getCodeSize());
+				//System.out.println("CODE SIZE " +  model.getCurrentJob().getCodeSize());
 				codeHex[i].setText(model.getHex(i));
 				codeDecimal[i].setText(model.getDecimal(i));
 			}	

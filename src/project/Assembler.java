@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public interface Assembler {
-	Set<String> noArgument = new TreeSet(Arrays.asList("HALT", "NOP", "NOP"));
+	Set<String> noArgument = new TreeSet(Arrays.asList("HALT", "NOP", "NOT"));
 	
 	/**
 	 * Method to assemble a file to its executable representation. 
